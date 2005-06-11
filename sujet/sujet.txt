@@ -1,0 +1,184 @@
+
+
+                  Base de données bibliographiques en ligne
+
+
+                           TP et Mini-Projet B.D.
+
+                                       
+                       Enseignants : Michel Bruynooghe
+                         et Christophe Boccheciampe
+
+                                       
+                                  Mai 2005
+ 
+
+
+Objectif des cours, TD et  TP
+
+Nous verrons comment réaliser une  banque  de  données  bibliographiques  en
+ligne, qui proposera  des  informations  de  la  façon  la  plus  attrayante
+possible à des utilisateurs potentiels.
+Pour l'utilisateur, la banque de données a pour  seule  fonction  de  donner
+des informations. Mais en ce qui concerne le programmeur  de  l'application,
+il ne faut pas oublier que la banque de données doit être  constamment  mise
+à jour en y ajoutant de nouvelles références bibliographiques.  Cette  tâche
+de mise à jour devra être prévue dans l'application à réaliser.
+
+Il y a donc deux parties dans l'application à réaliser :
+Présenter les références bibliographiques aux utilisateurs potentiels.
+Ajouter de nouvelles références bibliographiques.
+
+Les notions permettant de traiter cette  application  seront  présentées  en
+cours magistral. Une séance de TD sera consacrée à la conception avancée  de
+la base de  données   bibliographiques,  à  partir  du  schéma  préliminaire
+proposé dans ce document. Ce  schéma  préliminaire  sera  utilisé  pour  les
+travaux pratiques associés.
+
+Les cours magistraux seront  assurés  par  Michel  Bruynooghe.  Les  travaux
+pratiques seront encadrés par Christophe Boccheciampe
+ 
+
+Les données bibliographiques
+
+Ces données sont relatives à des articles scientifiques ou  à  des  ouvrages
+et sont décrites à l'aide de la syntaxe spécifique du logiciel LaTex.
+
+Les informations qui décrivent un article scientifique sont les suivantes :
+Identificateur  constitué  du  nom  du  premier  auteur  et  de  l'année  de
+publication, suivis éventuellement d'un numéro d'ordre.  Cet  identificateur
+sera utilisable par Latex pour faire référence à l'article considéré.
+Noms et initiales des prénoms des auteurs
+Titre de l'article
+Nom de la revue
+Numéro de volume
+Numéro de série
+Première et dernière pages.
+Date de publication
+Mots clés décrivant le thème traité dans l'article.
+
+Les informations qui décrivent un livre sont les suivantes :
+Noms et initiales des prénoms des auteurs
+Titre du livre
+Nom de l'éditeur
+Ville
+Année de publication
+ 
+
+Schéma de la base de données bibliographiques
+
+
+Le schéma suivant est une première esquisse envisageable :
+Article (idArticle , titreArticle, idRevue , noVolume , noSérie ,  pageDébut
+, pageFin , date)
+Ouvrage (idOuvrage , titreOuvrage , idEditeur , Ville , année)
+Auteur (idAuteur , nomAuteur , initialesPrénoms )
+AuteurArticle (idArticle , idAuteur)
+Revue (idRevue , nomRevue)
+Editeur (idEditeur , nomEditeur)
+Thésaurus (idMotClé , nomMotClé)
+DescriptionArticle (idArticle , idMotClé)
+
+Les identificateurs des revues et des éditeurs seront construits comme  dans
+l'exemple suivant: IJPRAI pour la revue  International  Journal  of  Pattern
+Recognition and Artificial Intelligence.
+
+Le schéma précédent sera utilisé par les étudiants pour la  réalisation  des
+travaux pratiques
+
+Les étudiants feront évoluer ce schéma, dans le cadre des  travaux  dirigés,
+en prenant en compte la gestion des emprunts effectués par les  utilisateurs
+ainsi que la gestion du rangement des références  bibliographiques.  Il  est
+demandé  aux  étudiants  de  rédiger  les  spécifications   des   extensions
+envisagées et de procéder à la modélisation conceptuelle  des  données  avec
+identification   des   entités,   des    associations,    des    dépendances
+fonctionnelles et conception du nouveau schéma de la base de données.
+
+
+
+Interface graphique à écrire en PHP
+
+Les fonctionnalités suivantes seront implémentées lors des séances de
+travaux pratiques:
+
+1 Garnissage de la base de données
+
+Cette opération sera effectuée à partir d'entrées au format BibTex
+spécifique au logiciel de traitement de textes LaTex.
+
+2 Présentation d'informations bibliographiques aux utilisateurs potentiels
+
+
+Le programmeur de l'application doit permettre à l'utilisateur de  spécifier
+des mots-clés permettant  de  sélectionner  les  articles  ou  les  ouvrages
+intéressant    l'utilisateur.    Il    serait    intéressant    d'introduire
+ultérieurement d'autres critères de recherche tels que le nom  d'un  auteur
+ou d'une revue. Mais cette extension ne rentre pas dans le cadre de ce TP.
+
+La présentation d'informations bibliographiques comprend deux pages:
+
+La page thésaurus. Cette page affiche la liste des mots-clés sous  la  forme
+d'une liste de sélection construite dynamiquement.
+La page des références bibliographiques. Cette page  affiche  la  liste  des
+références  bibliographiques  qui  satisfont  les  critères  de  recherche
+spécifiés par l'utilisateur.
+
+3 Ajout de références bibliographiques
+
+
+      Cette partie de l'application contiendra trois pages que l'utilisateur
+      ne verra jamais et qui sont destinées à la mise à jour de la banque de
+      données. Cet ajout d'informations comprend les pages suivantes.
+Sélection  du  type  de  référence   bibliographique:   livre   ou   article
+scientifique. Ces deux types prédéfinis  dans  la  banque  de  données  sont
+listés et présentés sous forme de boutons radio.
+Saisie  des  informations  bibliographiques.   Cette   page   permettra   au
+bibliothécaire  de  saisir  les  informations  de  la   nouvelle   référence
+bibliographique ainsi que les mots-clés descriptifs. Elle affiche  la  liste
+des noms de  revue  sous  la  forme  d'une  liste  de  sélection  construite
+dynamiquement,  afin  que  le  bibliothécaire  puisse  en  choisir  un.   Un
+formulaire de saisie permettra  de  spécifier  les  informations  suivantes:
+noms des auteurs, numéro de volume et de série, pages, date etc.
+Page  de   confirmation.   Lorsque   les   informations   saisies   par   le
+bibliothécaire sont correctes, elles sont ajoutées à la  banque  de  données
+bibliographiques. Une page sera alors  affichée  à  titre  de  confirmation.
+Cette page  présentera  l'ensemble  des  informations  saisies  de  manière
+interactive. En cliquant sur le lien  Ajouter  une  nouvelle  référence,  le
+bibliothécaire peut alors saisir une autre référence bibliographique
+Page signalant  des  informations  manquantes.  L'application  à  développer
+devra vérifier que le bibliothécaire a bien saisi  toutes  les  informations
+indispensables,  et  demandera  si  nécessaire  la  saisie  de  celles   qui
+manquent. La  programmation  de  cette  page  est  facultative  et  ne  sera
+réalisée que si les étudiants se montrent particulièrement productifs.
+
+Organisation du travail
+
+Le travail sera effectué par les étudiants groupés en binômes qui
+traiteront chacun une partie de l'application complète. L'intégration des
+travaux effectués par les différents binômes sera effectuée grâce à la mise
+en place d'une structure d'accueil écrite en HTML.
+
+Rapport à préparer par les étudiants
+
+Un rapport de 4 à 5 pages sera préparé par les étudiants. La structure de
+ce rapport sera la suivante :
+
+Introduction : 10 à 15 lignes.
+Présentation des données bibliographiques.
+Conception de la base de données:  dépendances  fonctionnelles,  application
+de la théorie de la normalisation et schéma de la base de données.
+Présentation de l'interface graphique réalisée  en  PHP  par  les  étudiants
+avec illustration par un exemple (copie d'écran des résultats).
+Conclusion avec perspectives de développement: 10 à 15 lignes.
+
+Les  programmes  développés  seront  présentés  en  annexe  du  rapport   et
+communiqués par e-mail aux enseignants chargés des TP et du cours  bases  de
+données.
+
+
+
+
+
+
+
+ 

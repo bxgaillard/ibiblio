@@ -1,0 +1,433 @@
+\documentclass[a4paper,11pt,oneside]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage{ae,aecompl,aeguill}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=4cm]{geometry}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+
+\newcommand{\file}[1]{\textsf{#1}}
+\newcommand{\url}[1]{\selectlanguage{english}\file{#1}\selectlanguage{french}}
+
+
+\begin{document}
+\sloppy
+\selectlanguage{french}
+
+
+%\title{\sc\LARGE Projet  de Bases de données :\\
+%	 Base de données bibliographiques\\
+%	 iBiblio\\
+%}
+%\maketitle
+%\begin{center}
+%	\sc Rapport\\
+%	\bigskip
+%	\author{Benjamin Gaillard \and Nicolas Riegel}\\
+%\end{center}
+
+\begin{titlepage}
+
+{\noindent\small
+\begin{tabular}[t t]{@{} p{.5 \textwidth} @{} p{.5 \textwidth} @{}}
+  \begin{minipage}[t]{.5 \textwidth}
+    Benjamin~\textsc{Gaillard}\\
+    Nicolas~\textsc{Riegel}
+  \end{minipage}
+  &
+  \begin{minipage}[t]{.5 \textwidth}
+    \begin{flushright}
+      IUP GMI 2\ieme{} année\\
+      2004/2005
+    \end{flushright}
+  \end{minipage}
+\end{tabular}
+}
+\vspace{5cm}
+
+\begin{center}
+\sc\huge
+\scalebox{1.3}{Projet de Base de Données}\\[1cm]
+{\Large \scalebox{1.3}{Base de données bibliographiques :}}\\[1cm]
+{\Huge \scalebox{1.3}{iBiblio}}\\[1cm]
+\rule[5pt]{.5\textwidth}{2pt}\\[2cm]
+\scalebox{1.3}{Rapport}
+\end{center}
+
+\end{titlepage}
+
+
+%\newpage
+\tableofcontents
+
+
+\newpage
+\section{Rappel du sujet}
+
+Réaliser une banque de données bibliographiques en ligne, qui proposera des informations de la façon la plus attrayante possible
+à des utilisateurs potentiels. Pour l'utilisateur, la banque de données a pour seule fonction de donner des informations. 
+Mais en ce qui concerne le programmeur de l'application, il ne faut pas oublier que la banque de données doit être 
+constamment mise à jour en y ajoutant de nouvelles références bibliographiques. Cette tâche de mise à jour devra être prévue 
+dans l'application à réaliser. 
+Il y a donc deux parties dans l'application à réaliser:
+\begin{itemize}
+	\item Présenter les références bibliographiques aux utilisateurs potentiels. 
+	\item Ajouter de nouvelles références bibliographiques.
+\end{itemize}
+
+\subsection{Les données bibliographiques}
+Ces données sont relatives à des articles scientifiques ou à des ouvrages.
+Les informations qui décrivent un article scientifique sont les suivantes:
+\begin{itemize}
+	\item Identificateur ;
+	\item Noms et initiales des prénoms des auteurs ;
+	\item Titre de l'article ;
+	\item Nom de la revue ;
+	\item Numéro de volume ;
+	\item Numéro de série ;
+	\item Première et dernière pages ;
+	\item Date de publication ;
+	\item Mots-clés décrivant le thème traité dans l'article.
+\end{itemize}
+
+Les informations qui décrivent un livre sont les suivantes:
+\begin{itemize}
+	\item Noms et initiales des prénoms des auteurs ;
+	\item Titre du livre ;
+	\item Nom de l'éditeur ;
+	\item Ville ;
+	\item Année de publication.
+\end{itemize}
+
+\subsection{Interface graphique à écrire en PHP}
+\subsubsection{Présentation d'informations bibliographiques aux utilisateurs}
+Le programmeur de l'application doit permettre à l'utilisateur de spécifier des mots-clés permettant de sélectionner 
+des articles ou les ouvrages intéressant l'utilisateur. Il serait intéressant d'introduire ultérieurement d'autres 
+critères de recherche tels que le nom d'un auteur ou d'une revue. Mais cette extension ne rentre pas dans le cadre de ce TP.
+La présentation d'informations bibliographiques comprend deux pages:
+\begin{description}
+	\item[La page thésaurus :] Cette page affiche la liste des mots-clés sous la forme d'une liste de sélection
+	construite dynamiquement.
+	\item[La page des références bibliographiques :] Cette page affiche la liste des références bibliographiques
+	qui satisfont les critères de recherche spécifiés par l'utilisateur.
+\end{description}
+\subsubsection{Ajout de références bibliographiques}
+Cette partie de l'application contiendra trois pages que l'utilisateur ne verra jamais et qui sont destinées 
+à la mise à jour de la banque de données. Cet ajout d'informations comprend les pages suivantes:
+\begin{description}
+	\item[Sélection du type de référence bibliographique :] livre ou article scientifique. Ces deux types prédéfinis 
+	dans la banque de données sont listés et présentés sous forme de boutons radio.
+	\item[Saisie des informations bibliographiques :] Cette page permettra au bibliothécaire de saisir les informations 
+	de la nouvelle référence bibliographique ainsi que les mots-clés descriptifs. Elle affiche la liste des noms de 
+	revue sous la forme d'une liste de sélection construite dynamiquement, afin que le bibliothécaire puisse en
+	choisir un. Un formulaire de saisie permettra de spécifier les informations suivantes: noms des auteurs, numéro de 
+	volume et de série, pages, date etc\dots
+	\item[Page de confirmation :] Lorsque les informations saisies par le bibliothécaire sont correctes, elles sont
+	ajoutées à la banque de données bibliographiques. Une page sera alors affichée à titre de confirmation. 
+	Cette page présentera l'ensemble des informations saisies de manière interactive. En cliquant sur le lien 
+	Ajouter une nouvelle référence, le bibliothécaire peut alors saisir une autre référence bibliographique.
+	\item[Page signalant des informations manquantes :] L'application développée devra vérifier que le bibliothécaire
+	a bien saisi toutes les informations indispensables, et demandera si nécessaire la saisie de celles qui manquent.
+	La programmation de cette page est facultative et ne sera réalisée que si les étudiants se montrent particulièrement 
+	productifs.
+\end{description}
+
+
+\newpage
+\section{Introduction}
+
+Ce projet a été fait en HTML, PHP et CSS et respecte les standards XHTML 1.1 et CSS niveau 2. L'utilisation du code sémantique 
+permet de visualiser le site avec n'importe quel navigateur de n'importe quelle génération. Néanmois toute la présentation
+graphique est beaucoup plus agréable sur les derniers naviguateurs qui gèrent les feuilles de style. Mais ceci sera expliqué
+dans la partie \verb|Choix techniques| page \pageref{choix}. Les autres explications de ce rapport concernent la base de données
+et le fonctionnement du site.
+
+\subsection{Installation du site}
+\label{install}
+La première chose à faire est l'installation du site. Cela va créer un fichier de connexion ainsi que les différentes tables
+dans la base de données. Pour que cela fonctionne, il faut impérativement que le serveur HTTP ait les droits d'écriture sur
+le fichier \verb|connection.conf.php|, ce qui revient en général à donner les droits d'écriture à tout le monde. Pour débuter
+l'installation, allez sur la page \url{http://\dots/ibiblio/install.php} et remplissez les différents champs
+pour la base de données : 
+\begin{itemize} 
+	\item Serveur PostgreSQL : adresse du serveur PostgreSQL (laissez vide pour une connexion locale) ;
+	\item Login : login de connexion au serveur de base de donnée ;
+	\item Mot de passe : mot de passe de connexion au serveur de base de données ;
+	\item Nom de la base de données : nom de la base de données qui vous est attribuées.
+\end{itemize}
+Ensuite les champs pour la protection du panneau d'administration :
+\begin{itemize}
+	\item Login : login de l'administrateur ;
+	\item Mot de passe : mot de passe de l'administrateur.
+\end{itemize}
+
+\subsection{Déroulement de l'installation}
+Le script d'installation va être appelé si toutes les informations nécessaires sont remplies. 
+Celui-ci va créer le fichier \verb|connection.conf.php| dans lequel il y a les informations de connexion à la base de données.
+Ensuite il va appeller les fonctions \verb|drop_tables()| et \verb|create_tables()| du fichier \verb|tables.php| qui vont
+d'abord supprimer d'éventuelles anciennes tables puis créer les nouvelles tables.
+\begin{description}
+	\item[Attention :] Si des tables avec le même nom existent déjà, elles seront supprimées.
+\end{description}
+Enfin le site va insérer une entrée dans la table \verb|Utilisateur| correspondant à l'administrateur. Celui-ci recevra pour login
+et mot de passe les champs que vous avez complété.\\
+Voilà, le site est prêt à l'emploi !
+
+\newpage
+\section{La base de données}
+
+Nous avons repris la base de données du sujet et rajouté une table pour lier les ouvrages aux auteurs et une table pour les
+utilisateurs.
+
+\subsection{Schéma de la base}
+\noindent
+\includegraphics[height=\textwidth,keepaspectratio=true]{bdd.png}
+
+\subsection{Description des tables}
+Voici la description des différentes tables de la base de données :
+
+\subsubsection{Table Article}
+Elle contient les différentes informations sur les articles. Voici ses champs :
+\begin{description}
+	\item[idArticle :] représente l'identifiant de l'article (SERIAL signifiant qu'il s'incrémente automatiquement). C'est aussi
+	la clé primaire ;
+	\item[titreArticle :] titre le l'article ;
+	\item[idRevue :] identifiant de la revue dans laquelle est paru l'article. C'est une clé étrangère référençant
+	la table Revue ;
+	\item[noVolume et noSerie :] représente le numéro de volume et le numéro de série ;
+	\item[pageDebut et pageFin :] sont les pages de début et de fin de l'article dans la revue ;
+	\item[date :] date de publication de l'article.
+\end{description}
+
+\subsubsection{Table Revue}
+Elle contient juste un nom et un identifiant de revue :
+\begin{description}
+	\item[idRevue :] identifiant de la revue (clé primaire, auto-incrémenté) ;
+	\item[nomRevue :] nom de la revue.
+\end{description}
+
+\subsubsection{Table Auteur}
+Elle contient les différentes informations sur les auteurs. Voici ses champs :
+\begin{description}
+	\item[idAuteur :] représente l'identifiant de l'auteur (clé primaire, auto-incrémenté) ;
+	\item[nomAuteur :] nom de l'auteur ;
+	\item[initialesPrenoms :] initiales des prénoms de l'auteur.
+\end{description}
+
+\subsubsection{Table AuteurArticle}
+Cette table correspond aux relations entre les auteurs et les articles. En effet, comme un article peut être écrit par
+plusieurs auteurs et un auteur peut avoir écrit plusieurs articles (relation \verb|many to many|), on a besoin d'une table 
+pour relier les deux autres. Cette table est uniquement formée de deux champs qui forment ensemble la clé primaire. De plus,
+chacun de ses champs sont des clés étrangères vers les tables \verb|Article| et \verb|Auteur| :
+\begin{description}
+	\item[idAuteur :] représente l'identifiant de l'auteur concerné par la relation ;
+	\item[idArticle :] représente l'article.
+\end{description}
+
+\subsubsection{Table Thesaurus}
+Cette table est en fait simplement une liste de mots-clés avec leur identifiants. Les mots-clés seront liés aux articles 
+avec la table \verb|DescriptinoArticle|.
+\begin{description}
+	\item[idMotCle :] représente l'identifiant du mot-clé (clé primaire, auto-incrémenté) ;
+	\item[nomMotCle :] est le nom du mot-clé.
+\end{description}
+
+\subsubsection{Table DescriptionArticle}
+Cette table fait le lien entre les tables \verb|Thesaurus| et \verb|Article|. Nous sommes ici dans le même cas que pour la table
+\verb|AuteurArticle|, c'est-à-dire qu'il peut y avoir plusieurs mots-clés pour le même article et plusieurs articles peuvent avoir le
+même mot-clé. On a donc à nouveau une clé primaire formée de deux champs qui sont eux-mêmes des clés étrangères référençant
+d'autres tables :
+\begin{description}
+	\item[idArticle :] représente l'identifiant de l'article concerné par le mot-clé ;
+	\item[idMotCle :] représente l'identifiant du mot-clé.
+\end{description}
+
+\subsubsection{Table Ouvrage}
+Cette table contient les différentes informations sur les ouvrages :
+\begin{description}
+	\item[idOuvrage :] représente l'identifiant de l'ouvrage (clé primaire, auto-incrémenté) ;
+	\item[titreOuvrage :] est le titre de l'ouvrage ;
+	\item[idEditeur :] identifiant de l'éditeur de l'ouvrage. C'est une clé étrangère référençant la table Editeur ;
+	\item[ville :] représente la ville d'édition de l'ouvrage ;
+	\item[annee :] est année de publication.
+\end{description}
+
+\subsubsection{Table AuteurOuvrage}
+Tout comme la table \verb|AuteurArticle|, cette table fait le lien entre les auteurs et les ouvrages. Elle fonctionne donc de
+la même manière. Voici ses champs :
+\begin{description}
+	\item[idAuteur :] représente l'identifiant de l'auteur concerné par la relation ;
+	\item[idOuvrage :] représente l'ouvrage.
+\end{description}
+
+\subsubsection{Table Editeur}
+Cette table représente les informations sur l'éditeur :
+\begin{description}
+	\item[idEditeur :] représente l'identifiant de l'éditeur (clé primaire, auto-incrémenté) ;
+	\item[nomEditeur :] est le nom de l'éditeur.
+\end{description}
+
+\subsubsection{Table Utilisateur}
+Voici une illustration de cette table qui n'est pas reliée aux autres tables :
+\begin{center}
+\includegraphics[height=2.5cm,keepaspectratio=true]{utilisateur.png}\\
+\end{center}
+Cette table sert à définir plusieurs niveaux d'accès au site.
+\begin{itemize}
+	\item Niveau 0 : Visiteur, peut faire des recherches (inutilisé car pas besoin d'authentification pour ça) ;
+	\item Niveau 1 : Ajout de références bibliographiques ;
+	\item Niveau 2 : Administrateur, peut installer, réinstaller et désinstaller le site. Peut aussi créer d'autres utilisateurs
+	de niveau 1 ou 2.
+\end{itemize}
+Cette table comprend donc les champs suivants :
+\begin{description}
+	\item[idUtil :] identifiant de l'utilisateur (clé primaire, auto-incrémenté) ;
+	\item[nom :] login de l'utilisateur ;
+	\item[pwd :] mot de passe de l'utilisateur encodé en MD5 ;
+	\item[niveau :] niveau d'accès au site (1 ou 2).
+\end{description}
+
+\newpage
+\section{Fonctionnement du site}
+
+\subsection{Accueil}
+La page correspondant à cette section est \verb|index.php|.\\
+C'est simplement la page d'accueil du site.
+
+\subsection{Rechercher un livre}
+La page correspondant à cette section est \verb|searchbook.php|.\\
+Cette page sert à la recherche d'un ouvrage. Vous pouvez effectuer cette recherche selon plusieurs critères : titre de l'ouvrage,
+nom de l'auteur, nom de l'éditeur, l'année de publication et ville d'édition. Vous n'êtes pas obligé de remplir tous les champs.
+Le moteur de recherche cherchera tous les ouvrages qui correspondent à au moins un des champs et mettra le champ correspondant en gras.
+
+\subsection{Rechercher un article}
+La page correspondant à cette section est \verb|searcharticle.php|.\\
+Tout comme le page \verb|Rechercher un livre|, cette page sert à la recherche d'un article. Les différents critères de recherche
+sont : titre de l'article, nom de l'auteur, date de publication, numéro de volume, numéro de série, page de début,
+page de fin, nom de la revue, mot-clé. Ici aussi les résultats seront les articles qui correspondent à au moins un des champs
+et le champ correspondant sera en gras.
+
+\subsection{Thésaurus}
+La page correspondant à cette section est \verb|searchkeyword.php|.\\
+Sur cette page vous avez le choix entre deux possibilités :
+\begin{description}
+	\item[Recherche par mot-clé :] cette section correspond à une recherche sur un seul mot-clé ou une partie d'un mot-clé.
+	\item[Recherche avec la liste des mots-clés :] ici vous pouvez sélectionner plusieurs mots-clés dans la liste, et en résultat
+	vous aurez tous les articles qui correspondent à au moins un des mots-clés.
+\end{description}
+Dans les deux cas, le ou les mots-clés trouvés correspondant à la recherche seront mis en gras.
+
+\subsection{Ajout d'un livre}
+La page correspondant à cette section est \verb|addbook.php|.\\
+Cette section est accessible uniquement  avec un niveau d'authentification 1 (admins ou personnes autorisés à ajouter des références).\\
+Cette page sert à ajouter un livre à la base de données. Les différents champs que vous devrez remplir sont : le titre de l'ouvrage,
+année de parution et la ville d'édition. Pour le ou les auteur(s) vous pouvez soit choisir dans la liste, soit remplir les champs
+nom et initiales des prénoms de l'auteur. N'ouliez pas de cliquer sur le bouton \verb|Ajouter| pour valider l'auteur. Le dernier
+champ correspond à l'éditeur. Là aussi vous pouvez le choisir dans la liste ou alors entrer son nom ou un nouveau nom.
+
+\subsection{Ajout d'un ouvrage}
+La page correspondant à cette section est \verb|addarticle.php|.\\
+Cette section est accessible uniquement avec un niveau d'authentification 1 (admins ou personnes autorisés à ajouter des références).\\
+Cette page sert à ajouter un article à la base de données. Les champs à compléter sont : titre de l'article, numéro de volume, 
+numéro de série, page de début, page de fin, date de publication. Pour le ou les auteur(s) le principe est le même, il faut choisir
+dans la liste ou l'entrer soi-même sans oublier de valider chaque auteur en cliquant sur \verb|Ajouter|. Le champ \verb|Nom de la revue|
+peut être complété soit par la liste, soit en entrant vous-même le nom ou un nouveau nom. Le dernier champ \verb|Mot(s) clé(s)|
+est facultatif. Il correspond à une liste de mots-clés qui se rapportent à l'article. Il servira surtout pour le Thésaurus. Pour 
+remplir ce champ veuillez séparer les mots-clés par des virgules.
+
+\subsection{Installation}
+La page correspondant à cette section est \verb|install.php|.\\
+Elle est accessible uniquement une fois authentifié en tant qu'administrateur.\\
+Cette page sert à l'installation du site. Elle est détaillée dans la partie \verb|Installation| à la page \pageref{install}.
+Néanmoins il faut préciser que vous pouvez à tout moment réinstaller le site grâce à cette page. Si vous choisissez le même serveur
+et la même base de données vous n'avez pas besoin d'effectuer une désinstallation, ce sera automatique. Mais si vous changez le
+nom de la base, n'oubliez pas de désinstaller l'autre avant sous peine de devoir la supprimer vous-même par après.
+
+\subsection{Désinstallation}
+La page correspondant à cette section est \verb|uninstall.php|.\\
+Cette section est accessible uniquement une fois authentifié en tant qu'administrateur.\\
+Cette page sert à désinstaller le site. Vous y trouverez simplement un bouton pour désinstaller le site. Cela aura pour effet de
+supprimer les tables qui sont dans la base de données, ainsi que les informations de connexion à la base de données et au panneau
+d'administration. Le site sera donc comme neuf.
+
+\subsection{Ajout d'un utilisateur}
+La page correspondant à cette section est \verb|adduser.php|.\\
+Elle est accessible uniquement une fois authentifié en tant qu'administrateur.\\
+Cette page sert à ajouter d'autre utilisateurs, avec chacun un niveau d'accès différent. Vous devez rentrer un login et un mot de
+passe pour l'utilisateur, puis vous pouvez choisir entre créer un nouvel administrateur (qui a tous les droits) ou créer un
+utilisateur qui peut seulement ajouter des références à la base de données. Vous ne pouvez pas utiliser un login qui est déjà utilisé.
+
+\subsection{Supprimer un utilisateur}
+La page correspondant à cette section est \verb|remuser.php|.\\
+Elle est accessible uniquement une fois authentifié en tant qu'administrateur.\\
+Cette page vous permet de supprimer un utilisateur. Pour celà, choisissez l'utilisateur dans la liste et cliquez sur \verb|Supprimer|.
+
+\subsection{Administration}
+La page correspondant à cette section est \verb|admin.php|.\\
+Cette page sert à s'identifier pour avoir accès aux pages à accès restreint selon le niveau d'accès que vous avez.
+Vous avez simplement à entrer votre login et votre mot de passe et à valider. Vous pourrez remarquer qu'une fois identifié, le
+lien vers cette page est remplacé par un lien pour se déconnecter. Selon votre niveau d'accès, vous avez les différents liens 
+dans le menu qui s'affiche.
+
+
+\newpage
+\section{Choix techniques}
+\label{choix}
+
+\subsection{Sessions PHP}
+
+Les sessions du langage PHP ont été utilisées afin de permettre à un utilisateur de rester connecté au site. En effet, une fois
+authentifié, il est intéressant que le site se rappelle de son identité pour qu'il n'ait pas besoin de se réauthentifier à chaque
+action. De cette manière, il ne le fait qu'une seule fois, et le site se rappelle qui il est à chaque fois que l'utilisateur
+effectue des traitements.
+
+Les sessions sont intéressantes sur plusieurs points : tout d'abord, PHP permet de les gérer automatiquement, sans presque aucun
+traitement particulier du développeur en ce qui concerne la sauvegarde des données d'une session entre la visite de plusieurs
+pages. Ensuite, elles apportent une certaine sécurité : les droits de l'utilisateurs sont stockés sur le serveur et non chez le
+client, cela permettant un contrôle à ce niveau-là. Finalement, les sessions sont compatibles avec n'importe quel client,
+puisqu'elles n'utilisent pas d'extension propriétaire et que tout se passe du côté du serveur.
+
+Une seule donnée est stockée dans les sessions : le niveau d'accès de l'utilisateur authentifié. En effet, il n'est pas nécesaire
+de retenir une autre information, celle-ci suffisant amplement pour toutes les fonctionnalités offertes par le site.
+
+\subsection{XHTML 1.1}
+
+Les pages générées sont toutes conformes à la norme XHTML 1.1. Ceci est une spécification plus stricte de la norme HTML actuellement
+en vigueur sur le web, s'appuyant sur le langage XML et abandonnant tous les aspects d'HTML directement liés à la présentation
+graphique. Le langage CSS est utilisé à cette dernière fin (voir la section suivante). XML est un langage résolument tourné vers
+l'avenir, permettant un échange uniformisé d'informations. Le fait d'écrire un site en XHTML lui apporte une certaine pérénité en
+s'assurant de sa compatibilité avec les dernières technologies et celles à venir.
+
+Il existe deux façons d'écrire un site en (X)HTML : une basée sur le contenu (dite sémantique), l'autre basée sur la présentation.
+C'est la première solution qui a été retenue pour le développement de notre site. Elle possède de très nombreux avantages face
+à l'autre solution, de par le fait qu'elle se focalise sur le contenu :
+\begin{itemize}
+	\item compatible avec tous les navigateurs, de dernière génération comme les plus anciens ;
+	\item accessibilité aux personnes handicapées utilisant des dispositifs de lecture non graphiques ;
+	\item séparation du contenu et de la présentation (développement indépendant).
+\end{itemize}
+
+Il y a cependant tout de même quelques inconvénients, notamment un support encore plus ou moins aléatoire des normes en vigueur par
+certains navigateurs. Mais dans la plupart des cas, il existe des solution de contournement (\emph{workaround}).
+
+\subsection{CSS 2}
+
+La technologie CSS est le complément \og présentation\fg{} de (X)HTML. C'est à elle qu'est reléguée toute la gestion graphique du
+contenu des pages. Elle peut aussi spécifier une présentation orale ou d'impression, mais cet aspect n'a pas été développé pour
+notre site, qui utilise les CSS pour l'affichage sur écran exclusivement.
+
+Une \emph{feuille de style} CSS est associée à chaque page (X)HTML à travers une balise de ce langage. Cette feuille de style va
+définir la manière dont vont se comporter graphiquement chaque élément d'une page HTML : position, couleur, bordure, fond, police,
+alignement, etc. Cela permet de créer un \emph{design} complexe pour une page qui ne contient que des balises de base. Le résultat
+de ceci est que, sur les navigateurs récents, les pages seront élégantes, et seront toujours affichées sur les anciennes génération,
+d'une façon certes très sobre, mais parfaitement lisible. Les dispositifs non graphiques, quant à eux, pourront tout simplement
+ignorer la feuille de style.
+
+
+\newpage
+\section{Conclusion}
+Ce projet nous a permis de découvrir le langage SQL, notament sa déclinaison en PostgreSQL, ainsi que son adaptation au langage PHP.
+De plus nous avons pu mettre à jour nos connaissances sur le PHP (sessions PHP) et sur les différents standards du web. Nous avons
+aussi découvert les feuilles de style (CSS). Ce projet a donc approfondi les connaissances acquises lors des cours et TDs.
+
+\end{document}

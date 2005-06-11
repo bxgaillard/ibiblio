@@ -1,0 +1,319 @@
+/*
+ * ---------------------------------------------------------------------------
+ *
+ * iBiblio : base de données bibliographique
+ * Copyright (C) 2005 Benjamin Gaillard & Nicolas Riegel
+ *
+ * ---------------------------------------------------------------------------
+ *
+ * Ce programme est un logiciel libre ; vous pouvez le redistribuer et/ou le
+ * modifier conformément aux dispositions de la Licence Publique Générale GNU,
+ * telle que publiée par la Free Software Foundation ; version 2 de la
+ * licence, ou encore (à votre convenance) toute version ultérieure.
+ *
+ * Ce programme est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE
+ * GARANTIE ; sans même la garantie implicite de COMMERCIALISATION ou
+ * D'ADAPTATION À UN OBJET PARTICULIER. Pour plus de détail, voir la Licence
+ * Publique Générale GNU.
+ *
+ * Vous devez avoir reçu un exemplaire de la Licence Publique Générale GNU en
+ * même temps que ce programme ; si ce n'est pas le cas, écrivez à la Free
+ * Software Foundation Inc., 675 Mass Ave, Cambridge, MA 02139, États-Unis.
+ *
+ * ---------------------------------------------------------------------------
+ */
+
+
+/* Fenêtre */
+html {
+    margin: 0;
+    padding: 0;
+    background: #BAC9D3;
+}
+
+/* Document */
+body {
+    margin: 12px 10px 12px 12px;
+    padding: 0;
+    color: black;
+    background: #BAC9D3;
+    font-family: "Bitstream Vera Sans", Verdana, Helvetica, Arial, Sans,
+		 sans-serif;
+    font-size: small;
+}
+
+
+/*
+ * Barre de titre
+ */
+
+#title {
+    background: url(title-middle.png);
+}
+
+h1 {
+    margin: 0 0 12px 0;
+    padding-left: 298px;
+    background: url(title-left.jpeg) left no-repeat;
+    text-align: right;
+}
+
+h1 span {
+    display: block;
+    width: 456px;
+    height: 117px;
+    margin-left: auto;
+    background: url(title-right.jpeg) right no-repeat;
+    font-size: 0;
+}
+
+h1 abbr {
+    display: none;
+}
+
+
+/*
+ * Menu latéral
+ */
+
+#menu {
+    float: right;
+    width: 22em;
+    color: white;
+    background: #0D60A5 url(menu-right.png) right repeat-y;
+}
+
+#menu-top {
+    background: url(menu-top-left.png) left top no-repeat;
+}
+
+#menu h2 {
+    margin: 0;
+    background: url(menu-top-right.png) right top no-repeat;
+    font-size: 175%;
+    font-weight: normal;
+}
+
+#menu h2 span {
+    display: block;
+    padding: 20px 10px 20px 50px;
+    background: url(menu-title.png) 16px 50% no-repeat;
+}
+
+#menu-middle {
+    margin: 1em 12px 1em 10px;
+}
+
+#menu ul {
+    margin: 1em 0;
+    padding: 0;
+    border-top: solid 1px #0D60A5;
+    border-bottom: solid 1px #0D60A5;
+    background: #5394C4;
+    list-style: none;
+}
+
+#menu-middle a {
+    display: block;
+    padding: 5px 5px 5px 20px;
+    color: white;
+    background: #0C4C8D url(menu-list.gif) 6px 50% no-repeat;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#menu-middle li a {
+    margin: 1px 0;
+    background-color: #0D60A5;
+}
+
+#menu-middle strong a {
+    background-color: #307CBC;
+    background-position: 12px 50%;
+    text-decoration: underline;
+}
+
+#menu-middle a:hover {
+    background-color: #206CAC;
+    background-position: 9px 50%;
+}
+
+#menu-bottom {
+    background: url(menu-bottom.png) bottom repeat-x;
+}
+
+#menu-ulp {
+    background: url(menu-bottom-left.png) left bottom no-repeat;
+}
+
+#menu-ulp span {
+    display: block;
+    padding: 2em 2px 30px 0;
+    background: url(menu-bottom-right.png) right bottom no-repeat;
+    text-align: center;
+}
+
+#menu-ulp a {
+    display: block;
+    width: 102px;
+    height: 58px;
+    margin: 0 auto;
+    background: url(ulp.png) center no-repeat;
+    text-decoration: none;
+    font-size: 0;
+}
+
+#menu-ulp acronym {
+    display: none;
+}
+
+
+/*
+ * Contenu du document
+ */
+
+#contents {
+    margin-right: 22em;
+    padding-right: 12px;
+    color: #5B636C;
+    background: white url(content-right.png) right repeat-y;
+}
+
+#contents div.top {
+    background: white url(content-top-right.png) right top no-repeat;
+    font-size: 6px;
+}
+
+#contents div.top span {
+    display: block;
+    height: 9px;
+    background: url(content-top-left.png) left top no-repeat;
+}
+
+#contents div.top span span {
+    display: none;
+}
+
+#contents div.content {
+    height: 400px;
+    margin-right: 2px;
+    padding: 1em 22px 1em 20px;
+    background: url(content-background.png) center no-repeat;
+}
+
+#contents > div.content {
+    height: auto;
+    min-height: 400px;
+}
+
+#contents div.bottom {
+    background: white url(content-bottom-right.png) right bottom no-repeat;
+    padding-right: 10px;
+    font-size: 6px;
+}
+
+#contents div.bottom span {
+    display: block;
+    background: url(content-bottom.png) bottom repeat-x;
+}
+
+#contents div.bottom span span {
+    height: 9px;
+    background: url(content-bottom-left.png) left bottom no-repeat;
+}
+
+
+/*
+ * Bas de page
+ */
+
+#footer {
+    text-align: left;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+#footer, #footer a {
+    color: #28333C;
+}
+
+#footer a:hover {
+    color: gray;
+}
+
+
+/*
+ * Éléments de balisage courants
+ */
+
+#contents h2 {
+    margin: 1em 2em;
+    text-align: center;
+    font-family: "Trebuchet MS", "Bitstream Vera Sans", Verdana, Helvetica,
+		 Arial, Sans, sans-serif;
+    font-size: 250%;
+}
+
+h3 {
+    margin: 1em;
+    font-size: 150%;
+}
+
+#contents a, #contents a:visited {
+    color: navy;
+    text-decoration: underline;
+}
+
+#contents a:hover {
+    color: blue;
+    text-decoration: none;
+}
+
+#contents a:active {
+    color: red;
+}
+
+img {
+    vertical-align: -30%;
+}
+
+a img {
+    border: none 0;
+}
+
+p {
+    margin: 1em 0;
+    text-align: center;
+}
+
+p.left {
+    text-align: left;
+}
+
+input[type=text], input[type=password] {
+    padding: 2px 3px;
+    border: solid 1px black;
+    background: white url(text-input.png) left top no-repeat;
+}
+
+strong.error {
+    color: red;
+}
+
+table {
+    margin: 1em 0;
+}
+
+table.center {
+    margin: 1em auto;
+}
+
+th {
+    text-align: right;
+}
+
+td {
+    text-align: left;
+}
+
+/* Fin du fichier */
